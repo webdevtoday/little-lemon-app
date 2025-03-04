@@ -1,35 +1,11 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Nav } from "../Nav";
 import css from "./index.module.css";
 import { Link } from "react-router";
 import { homePageRoute } from "../../routes";
-
-const debounce = (callback, delay) => {
-  let timeoutId;
-  return (...args) => {
-    clearTimeout(timeoutId);
-    timeoutId = setTimeout(() => callback(...args), delay);
-  };
-};
-
-const useWindowSize = () => {
-  const [windowSize, setWindowSize] = useState({
-    width: window.innerWidth,
-    height: window.innerHeight,
-  });
-
-  useEffect(() => {
-    const handleResize = () =>
-      setWindowSize({ width: window.innerWidth, height: window.innerHeight });
-    const debouncedHandleResize = debounce(handleResize, 300);
-
-    window.addEventListener("resize", debouncedHandleResize);
-
-    return () => window.removeEventListener("resize", debouncedHandleResize);
-  }, []);
-
-  return windowSize;
-};
+import { useWindowSize } from "../../hooks/useWindowSize";
+import { BurgerMenuButton } from "../BurgerMenuButton";
+import { BusketButton } from "../BusketButton";
 
 const isMobile = (width) => width <= 890;
 
@@ -42,8 +18,9 @@ export const Header = () => {
       <div className="section-body">
         <div className={css.headerBody}>
           {isMobile(width) && (
-            <span onClick={() => setMenuOpen(!menuOpen)}>Menu Toggler</span>
+            <BurgerMenuButton onClick={() => setMenuOpen(!menuOpen)} />
           )}
+
           <Link to={homePageRoute()}>
             <img
               className={css.logo}
@@ -51,6 +28,9 @@ export const Header = () => {
               alt="Little Lemon Restaurant Logo"
             />
           </Link>
+
+          {isMobile(width) && <BusketButton />}
+
           <Nav
             isMobile={isMobile(width)}
             isOpen={menuOpen}

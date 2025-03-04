@@ -11,3 +11,9 @@
   display: block;
   width: 200px;
 }
+
+@media (max-width: 428px) {
+  .logo {
+    width: 167px;
+  }
+}
