@@ -1,0 +1,13 @@
+.body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  width: 35px;
+  height: 25px;
+}
+
+.body div {
+  height: 3px;
+  background-color: #000;
+}
