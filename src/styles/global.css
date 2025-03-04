@@ -1,0 +1,18 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.section-body {
+  margin: 0 auto;
+  max-width: 858px;
+}
+
+@media (max-width: 890px) {
+  .section-body {
+    padding: 0 16px;
+  }
+}
