@@ -6,11 +6,15 @@ import { Footer } from "../Footer";
 export const Layout = () => {
   return (
     <div className="Layout">
-      <Header />
+      <Header className="section section-body" />
       <Main>
         <Outlet />
       </Main>
-      <Footer />
+      <div className="section-primary">
+        <div className="section-body">
+          <Footer />
+        </div>
+      </div>
     </div>
   );
 };

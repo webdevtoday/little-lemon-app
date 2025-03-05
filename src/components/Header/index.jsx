@@ -9,34 +9,32 @@ import { BusketButton } from "../BusketButton";
 
 const isMobile = (width) => width <= 890;
 
-export const Header = () => {
+export const Header = ({ ...props }) => {
   const { width } = useWindowSize();
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header>
-      <div className="section-body">
-        <div className={css.headerBody}>
-          {isMobile(width) && (
-            <BurgerMenuButton onClick={() => setMenuOpen(!menuOpen)} />
-          )}
+    <header {...props}>
+      <div className={css.headerBody}>
+        {isMobile(width) && (
+          <BurgerMenuButton onClick={() => setMenuOpen(!menuOpen)} />
+        )}
 
-          <Link to={homePageRoute()}>
-            <img
-              className={css.logo}
-              src={require("../../assets/asset16@4x.png")}
-              alt="Little Lemon Restaurant Logo"
-            />
-          </Link>
-
-          {isMobile(width) && <BusketButton />}
-
-          <Nav
-            isMobile={isMobile(width)}
-            isOpen={menuOpen}
-            onClose={() => setMenuOpen(false)}
+        <Link to={homePageRoute()}>
+          <img
+            className={css.logo}
+            src={require("../../assets/asset16@4x.png")}
+            alt="Little Lemon Restaurant Logo"
           />
-        </div>
+        </Link>
+
+        {isMobile(width) && <BusketButton />}
+
+        <Nav
+          isMobile={isMobile(width)}
+          isOpen={menuOpen}
+          onClose={() => setMenuOpen(false)}
+        />
       </div>
     </header>
   );
