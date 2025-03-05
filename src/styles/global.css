@@ -9,6 +9,8 @@
 :root {
   --primary-color: rgb(73, 94, 87);
   --secondary-color: rgb(244, 206, 20);
+  --secondary-accent-color: rgb(238, 153, 114);
+  --secondary-dark-color: rgb(237, 239, 238);
   --border-radius: 16px;
   --title-font-family: "Markazi Text", serif;
   --subtitle-font-family: "Markazi Text", serif;
@@ -28,6 +30,7 @@ body {
 img {
   display: block;
   max-width: 100%;
+  object-fit: cover;
 }
 
 .section {
@@ -45,8 +48,44 @@ img {
   max-width: 858px;
 }
 
+.title {
+  font-family: var(--title-font-family);
+  font-size: var(--title-font-size);
+}
+
+.button {
+  padding: 10px 22px;
+
+  font-family: var(--text-font-family);
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+
+  border: none;
+  outline: none;
+  border-radius: 12px;
+
+  background-color: var(--secondary-color);
+
+  cursor: pointer;
+}
+.button:visited {
+  color: #000;
+}
+.button--large {
+  padding: 18px 32px;
+}
+
 @media (max-width: 890px) {
   .section-body {
     padding: 0 16px;
+  }
+}
+
+@media (max-width: 475px) {
+  :root {
+    --title-font-size: 50px;
+    --subtitle-font-size: 35px;
   }
 }
