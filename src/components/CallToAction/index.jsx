@@ -14,15 +14,14 @@ export const CallToAction = () => (
           We are a family owned Mediterranean restaurant, focused on traditional
           recipes served with a modern twist.
         </p>
-        <Link className={css.button} to={reservationPageRoute()}>
+        <Link className="button" to={reservationPageRoute()}>
           Reserve a Table
         </Link>
-        {/* <button className={css.button}>Reserve a Table</button> */}
       </div>
       <div className={css.imageHolder}>
         <img
           className={css.image}
-          src={require("../../assets/3d3cce7a3104bf255ed0e69195e2a157338c1bff.jpg")}
+          src={require("../../assets/images/f64e8d485894f9df206830063adbc400d85de711.jpg")}
           alt="Little Lemon Chicago"
         />
       </div>
