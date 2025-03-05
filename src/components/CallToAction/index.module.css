@@ -1,0 +1,107 @@
+.section {
+  font-family: Markazi Text;
+  font-size: 18px;
+  font-weight: 600;
+  color: #fff;
+  background: rgb(73, 94, 87);
+}
+
+.section p {
+  margin-bottom: 16px;
+  font-family: Karla;
+}
+
+.body {
+  padding: 32px 0;
+  display: grid;
+  grid-template-areas:
+    "heading image"
+    "description image";
+  grid-template-columns: 2fr 1fr;
+  gap: 16px 16px;
+  justify-content: space-between;
+}
+
+.heading {
+  grid-area: heading;
+}
+.description {
+  grid-area: description;
+  max-width: 360px;
+}
+.imageHolder {
+  grid-area: image;
+  position: relative;
+}
+
+.image {
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  max-width: 310px;
+  width: 100%;
+
+  border-radius: 16px;
+
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+.title {
+  font-size: 64px;
+  color: rgb(244, 206, 20);
+  line-height: 1;
+}
+.subtitle {
+  display: inline-block;
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.button {
+  padding: 8px 16px;
+
+  font-family: Karla;
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: none;
+
+  border: none;
+  outline: none;
+  border-radius: 16px;
+
+  background-color: rgb(244, 206, 20);
+
+  cursor: pointer;
+}
+.button:visited {
+  color: #000;
+}
+
+@media (max-width: 676px) {
+  .body {
+    grid-template-areas:
+      "heading heading"
+      "description image";
+  }
+}
+@media (max-width: 390px) {
+  .body {
+    grid-template-areas:
+      "heading heading"
+      "description description"
+      "image image";
+  }
+  .title {
+    font-size: 50px;
+  }
+  .subtitle {
+    font-size: 35px;
+  }
+  .image {
+    margin: 0 auto;
+    position: static;
+  }
+}
