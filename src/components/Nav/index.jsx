@@ -1,5 +1,5 @@
 import cn from "classnames";
-import { Link, NavLink } from "react-router";
+import { NavLink } from "react-router";
 import { siteMenu } from "../../routes";
 import css from "./index.module.css";
 
