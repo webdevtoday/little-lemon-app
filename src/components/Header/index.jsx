@@ -28,13 +28,13 @@ export const Header = ({ ...props }) => {
           />
         </Link>
 
-        {isMobile(width) && <BusketButton />}
-
         <Nav
           isMobile={isMobile(width)}
           isOpen={menuOpen}
           onClose={() => setMenuOpen(false)}
         />
+
+        <BusketButton />
       </div>
     </header>
   );
