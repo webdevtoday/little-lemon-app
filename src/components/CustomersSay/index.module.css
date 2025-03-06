@@ -1,0 +1,15 @@
+.body {
+  padding: 60px 0;
+}
+
+.title {
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+.cards {
+  gap: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
