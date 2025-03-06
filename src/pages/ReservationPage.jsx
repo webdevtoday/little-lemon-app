@@ -1,5 +1,11 @@
+import { UnderConstruction } from "../components/UnderConstruction";
+
 export const ReservationPage = () => (
   <>
-    <h1>Reservation Page</h1>
+    <div className="section">
+      <div className="section-body">
+        <UnderConstruction />
+      </div>
+    </div>
   </>
 );

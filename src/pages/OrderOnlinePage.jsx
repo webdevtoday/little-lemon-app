@@ -1,5 +1,11 @@
+import { UnderConstruction } from "../components/UnderConstruction";
+
 export const OrderOnlinePage = () => (
   <>
-    <h1>Order Online Page</h1>
+    <div className="section">
+      <div className="section-body">
+        <UnderConstruction />
+      </div>
+    </div>
   </>
 );

@@ -1,5 +1,11 @@
+import { UnderConstruction } from "../components/UnderConstruction";
+
 export const MenuPage = () => (
   <>
-    <h1>Menu Page</h1>
+    <div className="section">
+      <div className="section-body">
+        <UnderConstruction />
+      </div>
+    </div>
   </>
 );
