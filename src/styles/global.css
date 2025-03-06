@@ -51,6 +51,7 @@ img {
 .title {
   font-family: var(--title-font-family);
   font-size: var(--title-font-size);
+  line-height: 0.7;
 }
 
 .button {
