@@ -2,7 +2,7 @@ import css from "./index.module.css";
 
 const Icon = ({ ...props }) => (
   <svg
-    ariaHidden="true"
+    aria-hidden="true"
     focusable="false"
     role="img"
     xmlns="http://www.w3.org/2000/svg"

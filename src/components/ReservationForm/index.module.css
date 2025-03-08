@@ -1,0 +1,104 @@
+.form {
+  gap: 15px;
+  display: grid;
+  grid-template-columns: 1fr;
+}
+.form > * {
+  grid-column: span 2;
+}
+
+.progress {
+  width: 100%;
+  height: 8px;
+  background: #e0e0e0;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.progressBar {
+  height: 100%;
+  width: 0%;
+  border-radius: 5px;
+  background: var(--secondary-color);
+  transition: width 0.3s ease-in-out;
+}
+
+.body {
+  gap: 15px;
+  display: grid;
+  font-size: 20px;
+  border: none;
+  outline: none;
+}
+
+.twoColumns {
+  grid-template-columns: 1fr 1fr;
+}
+
+.inputWrapper {
+  width: 100%;
+}
+
+.inputWrapper .error {
+  padding: 0.1em 1em;
+  font-size: 0.6em;
+  font-weight: 700;
+  line-height: 1.2;
+  color: red;
+}
+
+.form label {
+  margin-bottom: 0.4em;
+  display: inline-block;
+  font-size: 0.9em;
+  font-weight: 700;
+}
+
+.form label.required::after {
+  content: "*";
+  color: red;
+}
+
+.form input,
+.form textarea {
+  padding: 11px 25px;
+  width: 100%;
+  font-size: 1em;
+  border: 1px solid black;
+  border-radius: var(--border-radius);
+  resize: none;
+}
+.form input[type="tel"] {
+  padding-left: 50px;
+}
+.form .phoneInputWrapper {
+  position: relative;
+}
+.form .flagImage {
+  position: absolute;
+  top: 0;
+  left: 15px;
+  transform: translateY(50%);
+}
+
+.form .invalid {
+  border: 2px solid red !important;
+}
+
+.form .valid {
+  border: 2px solid green !important;
+}
+
+.form .withColor.invalid,
+.form .withColor.invalid {
+  color: red !important;
+}
+
+.form .withColor.valid,
+.form .withColor.valid {
+  color: green !important;
+}
+
+.form button {
+  font-size: 1em;
+}

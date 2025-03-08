@@ -1,0 +1,32 @@
+.imageWrapper {
+  padding: 0 !important;
+}
+
+.image {
+  width: 100%;
+  aspect-ratio: 4 / 2;
+  object-fit: cover;
+}
+
+.body {
+  padding: 30px 0;
+  gap: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.reservation {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  row-gap: 0.5em;
+}
+.reservation dt {
+  font-family: Karla;
+  font-size: 20px;
+  font-weight: 700;
+}
+.reservation dd {
+  font-family: Karla;
+  font-size: 18px;
+  font-weight: 500;
+}

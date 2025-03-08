@@ -2,6 +2,7 @@ export const homePageRoute = () => "/";
 export const aboutPageRoute = () => "/about";
 export const menuPageRoute = () => "/menu";
 export const reservationPageRoute = () => "/reservation";
+export const reservationThankYouPageRoute = () => "/reservation/thank-you";
 export const orderOnlinePageRoute = () => "/order-online";
 export const loginPageRoute = () => "/login";
 

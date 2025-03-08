@@ -78,6 +78,10 @@ img {
   padding: 18px 32px;
 }
 
+.iti {
+  width: 100%;
+}
+
 @media (max-width: 890px) {
   .section-body {
     padding: 0 16px;
