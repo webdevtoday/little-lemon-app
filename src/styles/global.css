@@ -67,6 +67,7 @@ img {
   outline: none;
   border-radius: 12px;
 
+  color: #000;
   background-color: var(--secondary-color);
 
   cursor: pointer;
