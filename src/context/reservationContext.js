@@ -9,6 +9,7 @@ const initialData = {
   hours: 1,
   guests: 1,
 };
+// eslint-disable-next-line
 const testData = {
   step: 2,
   date: "2025-03-13",
