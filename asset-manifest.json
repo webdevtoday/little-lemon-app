@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/little-lemon-app/static/css/main.1cc789b1.css",
+    "main.js": "/little-lemon-app/static/js/main.b167dde5.js",
+    "static/js/453.15cc4906.chunk.js": "/little-lemon-app/static/js/453.15cc4906.chunk.js",
+    "static/media/278299c7.jpg": "/little-lemon-app/static/media/9beeddcd9d22dc711cd9fddc4a3393a7278299c7.25fc793faeb3d58ed9fb.jpg",
+    "static/media/5995ed28.jpg": "/little-lemon-app/static/media/957db75e6b654e07f65da12b96dc858c5995ed28.d54e450bda5efcf06010.jpg",
+    "static/media/d85de711.jpg": "/little-lemon-app/static/media/f64e8d485894f9df206830063adbc400d85de711.827fb0bfe6f625329f41.jpg",
+    "static/media/reservation.jpg": "/little-lemon-app/static/media/reservation.37d65b423fb30e01873a.jpg",
+    "static/media/asset18@4x.png": "/little-lemon-app/static/media/asset18@4x.215df87837073a73cb27.png",
+    "static/media/chicago-2.jpg": "/little-lemon-app/static/media/chicago-2.169ce3a846a568df9237.jpg",
+    "static/media/chicago-1.jpg": "/little-lemon-app/static/media/chicago-1.846bdb44a0a2139902e3.jpg",
+    "static/media/thankyou.jpg": "/little-lemon-app/static/media/thankyou.3bbc27667205cdfb9b6f.jpg",
+    "static/media/asset16@4x.png": "/little-lemon-app/static/media/asset16@4x.d4cae6fac8384c2dae04.png",
+    "index.html": "/little-lemon-app/index.html",
+    "static/media/delivering.svg": "/little-lemon-app/static/media/delivering.bfb5b0a36d4038a70401b1d8c48ade14.svg",
+    "static/media/busket.svg": "/little-lemon-app/static/media/busket.2859b025c0df6d8bb4e5d6e7cb77b23f.svg",
+    "main.1cc789b1.css.map": "/little-lemon-app/static/css/main.1cc789b1.css.map",
+    "main.b167dde5.js.map": "/little-lemon-app/static/js/main.b167dde5.js.map",
+    "453.15cc4906.chunk.js.map": "/little-lemon-app/static/js/453.15cc4906.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1cc789b1.css",
+    "static/js/main.b167dde5.js"
+  ]
+}
