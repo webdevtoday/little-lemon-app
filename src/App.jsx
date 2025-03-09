@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router";
+import { HashRouter as Router, Route, Routes } from "react-router";
 import { Layout } from "./components/Layout";
 import * as routes from "./routes";
 import { HomePage } from "./pages/HomePage";
@@ -14,7 +14,7 @@ import { ReservationThankYouPage } from "./pages/ReservationThankYouPage";
 function App() {
   return (
     <ReservationProvider>
-      <BrowserRouter>
+      <Router>
         <Routes>
           <Route element={<Layout />}>
             <Route path={routes.homePageRoute()} element={<HomePage />} />
@@ -35,7 +35,7 @@ function App() {
             <Route path={routes.loginPageRoute()} element={<LoginPage />} />
           </Route>
         </Routes>
-      </BrowserRouter>
+      </Router>
     </ReservationProvider>
   );
 }
