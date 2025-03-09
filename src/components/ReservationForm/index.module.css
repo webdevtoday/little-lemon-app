@@ -60,6 +60,7 @@
 }
 
 .form input,
+.form select,
 .form textarea {
   padding: 11px 25px;
   width: 100%;

@@ -16,13 +16,15 @@ import { reservationThankYouPageRoute } from "../../routes";
 import { useReservationContext } from "../../context/reservationContext";
 import { NumberInput } from "../NumberInput";
 import css from "./index.module.css";
+import { submitAPI } from "../../utils";
 
 const MIN_DATE = new Date();
-const MAX_DATE = new Date(new Date().setMonth(new Date().getMonth() + 6));
-const MIN_DATE_FORMATTED = MIN_DATE.toISOString().split("T")[0];
-const MAX_DATE_FORMATTED = MAX_DATE.toISOString().split("T")[0];
-const MIN_TIME = "10:00";
-const MAX_TIME = "20:00";
+MIN_DATE.setHours(0, 0, 0, 0);
+const MAX_DATE = new Date();
+MAX_DATE.setMonth(MAX_DATE.getMonth() + 6);
+MAX_DATE.setHours(0, 0, 0, 0);
+const MIN_DATE_FORMATTED = MIN_DATE.toLocaleDateString("en-CA");
+const MAX_DATE_FORMATTED = MAX_DATE.toLocaleDateString("en-CA");
 const MIN_DURATION = 1;
 const MAX_DURATION = 4;
 const MIN_GUESTS = 1;
@@ -46,27 +48,7 @@ const step1Validation = Yup.object({
     )
     .max(MAX_DATE, `Date cannot be later than ${MAX_DATE.toLocaleDateString()}`)
     .required(`Date is required`),
-  time: Yup.string()
-    .required("Time is required")
-    .matches(/^([01]\d|2[0-3]):([0-5]\d)$/, "Invalid time format (HH:mm)")
-    .test(
-      "is-valid-time",
-      `Time must be between ${MIN_TIME} and ${MAX_TIME}`,
-      (value) => {
-        if (!value) return false;
-
-        const toMinutes = (time) => {
-          const [hours, minutes] = time.split(":").map(Number);
-          return hours * 60 + minutes;
-        };
-
-        const minMinutes = toMinutes(MIN_TIME);
-        const maxMinutes = toMinutes(MAX_TIME);
-        const valueMinutes = toMinutes(value);
-
-        return valueMinutes >= minMinutes && valueMinutes <= maxMinutes;
-      }
-    ),
+  time: Yup.string().required("Time is required"),
   hours: Yup.number()
     .required("Duration is required")
     .positive("Duration must be a positive number")
@@ -93,7 +75,7 @@ const step2Validation = Yup.object({
 });
 
 export const ReservationForm = () => {
-  const { step, onNext, onReset } = useReservationContext();
+  const { state, dispatch } = useReservationContext();
   const navigate = useNavigate();
 
   const formik = useFormik({
@@ -108,11 +90,13 @@ export const ReservationForm = () => {
       comment: "",
     },
     onSubmit: (values) => {
-      formik.resetForm();
-      onReset();
-      navigate(reservationThankYouPageRoute());
+      if (submitAPI(values)) {
+        formik.resetForm();
+        dispatch({ type: "RESET" });
+        navigate(reservationThankYouPageRoute());
+      }
     },
-    validationSchema: step === 1 ? step1Validation : step2Validation,
+    validationSchema: state.step === 1 ? step1Validation : step2Validation,
   });
 
   const { inputValue, handlePhoneValueChange, inputRef, country } =
@@ -124,7 +108,7 @@ export const ReservationForm = () => {
     });
 
   const handleNextStep = async () => {
-    if (step !== 1) return;
+    if (state.step !== 1) return;
 
     const errors = await formik.validateForm();
 
@@ -136,13 +120,10 @@ export const ReservationForm = () => {
     });
 
     if (Object.keys(errors).length === 0) {
-      onNext({
-        step: step + 1,
-        date: formik.values.date,
-        time: formik.values.time,
-        hours: formik.values.hours,
-        guests: formik.values.guests,
-      });
+      dispatch({ type: "SET_TIME", payload: formik.values.time });
+      dispatch({ type: "SET_HOURS", payload: formik.values.hours });
+      dispatch({ type: "SET_GUESTS", payload: formik.values.guests });
+      dispatch({ type: "NEXT_STEP" });
     }
   };
 
@@ -151,23 +132,28 @@ export const ReservationForm = () => {
       <div className={css.progress}>
         <div
           className={css.progressBar}
-          style={{ width: `${(step / 2) * 100}%` }}
+          style={{ width: `${(state.step / 2) * 100}%` }}
         ></div>
       </div>
 
-      {step === 1 && (
+      {state.step === 1 && (
         <div className={cn(css.body, css.twoColumns)}>
           <div className={css.inputWrapper}>
             <label htmlFor="date" className={css.required}>
               Date
             </label>
             <input
-              type="date"
-              name="date"
               id="date"
+              name="date"
+              type="date"
               min={MIN_DATE_FORMATTED}
               max={MAX_DATE_FORMATTED}
-              {...formik.getFieldProps("date")}
+              value={formik.values.date}
+              onChange={(event) => {
+                formik.setFieldValue("date", event.target.value);
+                dispatch({ type: "SET_DATE", payload: event.target.value });
+              }}
+              onBlur={formik.handleBlur}
               className={cn({
                 [css.withColor]: true,
                 [css.invalid]: formik.touched.date && formik.errors.date,
@@ -182,19 +168,24 @@ export const ReservationForm = () => {
             <label htmlFor="time" className={css.required}>
               Time
             </label>
-            <input
-              type="time"
-              name="time"
+            <select
               id="time"
-              min={MIN_TIME}
-              max={MAX_TIME}
+              name="time"
+              disabled={state.availableTimes.length <= 0}
               {...formik.getFieldProps("time")}
               className={cn({
                 [css.withColor]: true,
                 [css.invalid]: formik.touched.time && formik.errors.time,
                 [css.valid]: formik.touched.time && !formik.errors.time,
               })}
-            />
+            >
+              <option value="">Select Time</option>
+              {state.availableTimes.map((time) => (
+                <option key={time} value={time}>
+                  {time}
+                </option>
+              ))}
+            </select>
             {formik.touched.time && formik.errors.time && (
               <div className={css.error}>{formik.errors.time}</div>
             )}
@@ -243,7 +234,7 @@ export const ReservationForm = () => {
           </div>
         </div>
       )}
-      {step === 2 && (
+      {state.step === 2 && (
         <div className={cn(css.body, css.oneColumn)}>
           <div className={css.inputWrapper}>
             <label htmlFor="name" className={css.required}>
@@ -331,11 +322,11 @@ export const ReservationForm = () => {
       <small>* field is mandatory to enter</small>
 
       <button
-        type={step === 1 ? "button" : "submit"}
+        type={state.step === 1 ? "button" : "submit"}
         onClick={handleNextStep}
         className="button"
       >
-        {step === 1 ? "Checkout" : "Reserve"}
+        {state.step === 1 ? "Checkout" : "Reserve"}
       </button>
     </form>
   );

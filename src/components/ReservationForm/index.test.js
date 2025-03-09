@@ -11,6 +11,7 @@ import dayjs from "dayjs";
 import { ReservationProvider } from "../../context/reservationContext";
 import { ReservationForm } from ".";
 import { reservationThankYouPageRoute } from "../../routes";
+import userEvent from "@testing-library/user-event";
 
 test("should submit the form successfully", async () => {
   // eslint-disable-next-line
@@ -29,9 +30,10 @@ test("should submit the form successfully", async () => {
     fireEvent.change(screen.getByLabelText(/Date/i), {
       target: { value: dayjs().add(1, "day").format("YYYY-MM-DD") },
     });
-    fireEvent.change(screen.getByLabelText(/Time/i), {
-      target: { value: "12:00" },
-    });
+    userEvent.selectOptions(
+      screen.getByLabelText(/Time/i),
+      screen.getAllByRole("option")[1]
+    );
     fireEvent.click(screen.getByRole("button", { name: /checkout/i }));
   });
 

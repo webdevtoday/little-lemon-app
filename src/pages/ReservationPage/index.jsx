@@ -8,7 +8,9 @@ import advancedFormat from "dayjs/plugin/advancedFormat";
 dayjs.extend(advancedFormat);
 
 export const ReservationPage = () => {
-  const { step, date, time, hours, guests } = useReservationContext();
+  const { state } = useReservationContext();
+  const { step, date, time, hours, guests } = state;
+
   return (
     <>
       <div className="section">
@@ -45,11 +47,17 @@ export const ReservationPage = () => {
                 <dl className={css.reservation}>
                   <dt>Date:</dt>
                   <dd>
-                    {dayjs(`${date} ${time}`).format("dddd, Do MMMM, YYYY")}
+                    {dayjs(
+                      `${date.toLocaleDateString("en-CA")} ${time}`
+                    ).format("dddd, Do MMMM, YYYY")}
                   </dd>
 
                   <dt>Time:</dt>
-                  <dd>{dayjs(`${date} ${time}`).format("HH:mm A")}</dd>
+                  <dd>
+                    {dayjs(
+                      `${date.toLocaleDateString("en-CA")} ${time}`
+                    ).format("HH:mm A")}
+                  </dd>
 
                   <dt>Duration:</dt>
                   <dd>Approx. {hours} hours</dd>
